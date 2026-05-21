@@ -1,0 +1,300 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Rubik", sans-serif;
+    background: url('images/ppp.jpg') center/cover no-repeat;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.calculator-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.calculator-ticket {
+    width: 430px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow:
+        0 35px 80px rgba(0, 0, 0, 0.4),
+        inset 0 0 30px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.calculator-ticket::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
+.ticket-info {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ticket-date {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.ticket-date .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.5),
+        transparent
+    );
+    margin: 0 15px;
+}
+
+.ticket-dots {
+    height: 2px;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.6) 0px,
+        rgba(255, 255, 255, 0.6) 6px,
+        transparent 6px,
+        transparent 12px
+    );
+    margin: 20px 0;
+}
+
+.calculator-display {
+    height: 80px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+        inset 0 2px 10px rgba(0, 0, 0, 0.2),
+        0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+.calculator-display:focus-within {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow:
+        inset 0 2px 10px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.result-display {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    font-size: 36px;
+    font-family: 'Rubik', sans-serif;
+    color: rgba(255, 255, 255, 0.95);
+    text-align: right;
+    outline: none;
+    font-weight: 700;
+    line-height: 80px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.calculator-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.button-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.calc-btn {
+    height: 55px;
+    border: none;
+    border-radius: 12px;
+    font-size: 20px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.calc-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 1);
+}
+
+.calc-btn:active {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.2),
+        inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.calc-btn.primary {
+    background: rgba(255, 140, 66, 0.3);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 700;
+    border: 1px solid rgba(255, 140, 66, 0.4);
+}
+
+.calc-btn.primary:hover {
+    background: rgba(255, 140, 66, 0.5);
+}
+
+.calc-btn.secondary {
+    background: rgba(106, 90, 205, 0.25);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(106, 90, 205, 0.3);
+}
+
+.calc-btn.secondary:hover {
+    background: rgba(106, 90, 205, 0.4);
+}
+
+.calc-btn.execute {
+    background: rgba(255, 140, 66, 0.4);
+    color: rgba(255, 255, 255, 1);
+    font-size: 24px;
+    border: 1px solid rgba(255, 140, 66, 0.5);
+    box-shadow:
+        0 4px 15px rgba(255, 140, 66, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.calc-btn.execute:hover {
+    background: rgba(255, 140, 66, 0.6);
+    box-shadow:
+        0 8px 25px rgba(255, 140, 66, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.calc-btn.zero {
+    grid-column: span 2;
+}
+
+.ticket-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.ticket-label {
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.ticket-barcode {
+    width: 400px;
+    height: 30px;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.7) 0px,
+        rgba(255, 255, 255, 0.7) 3px,
+        transparent 3px,
+        transparent 6px
+    );
+    opacity: 0.8;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calculator-ticket {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.calculator-ticket::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 25px;
+    box-shadow:
+        inset 0 0 60px rgba(255, 255, 255, 0.05),
+        0 0 30px rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    z-index: -1;
+}
